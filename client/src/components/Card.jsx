@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react'
 import { Link } from 'react-router-dom'
 import './Card.css'
+import more from '../components/more.png'
 
 const Card = (props) => { 
     
@@ -12,12 +13,14 @@ const Card = (props) => {
 
     return (
         <div className="card">
-            <div className='top-container' style={{ backgroundImage:`url(${gift.image})`}}></div>
+            <div className='top-container' style={{ backgroundImage:`url(${gift.image})`}}>
+                <Link to={'/edit/' + gift.id}><img src={more} /></Link>
+            </div>
             <div className='bottom-container'>
                 <h3>{gift.name}</h3>
                 <p>{'Price: ' + gift.pricepoint}</p>
                 <p>{'Great For: ' + gift.audience}</p>
-                <Link to={'/gift/' + gift.id}><a>Read More →</a></Link>
+                <Link to={'/gift/' + gift.id}>Read More →</Link>
             </div>
         </div>
     )

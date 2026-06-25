@@ -1,11 +1,23 @@
 import pg from 'pg'
-const { Pool } = pg;
+import dotenv from 'dotenv'
 
-const connectionString =
-  "postgresql://postgres:t5u3i8hAKi0xFA1BP7Ri@containers-us-west-194.railway.app:6020/railway";
+dotenv.config()
+
+const { Pool } = pg
+
+const isLocal =
+  process.env.PGHOST === 'localhost' ||
+  process.env.PGHOST === '127.0.0.1'
 
 export const pool = new Pool({
-  connectionString,
-});
-
-export default pool;
+  user: process.env.PGUSER,
+  password: process.env.PGPASSWORD,
+  host: process.env.PGHOST,
+  port: process.env.PGPORT,
+  database: process.env.PGDATABASE,
+  ssl: isLocal
+    ? false
+    : {
+        rejectUnauthorized: false
+      }
+})

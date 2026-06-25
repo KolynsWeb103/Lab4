@@ -6,6 +6,8 @@ import giftsRouter from './routes/gifts.js'
 // initalizie express
 const app = express();
 
+app.use(express.json())
+
 // middleware
 app.use(bodyParser.urlencoded({extended: true}));
 app.use(bodyParser.json({extended: true}));
