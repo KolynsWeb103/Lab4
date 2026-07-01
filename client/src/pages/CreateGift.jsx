@@ -32,8 +32,6 @@ const CreateGift = () => {
     
     const createGift = async (event) => {
         event.preventDefault()
-        console.log('Submit clicked')
-        console.log('Gift data:', gift)
 
         const options = {
             method: 'POST',
@@ -45,13 +43,12 @@ const CreateGift = () => {
 
         try {
             const response = await fetch('http://localhost:3000/gifts', options)
-            console.log('Response:', response)
 
             if (response.ok) {
-            window.location = '/'
+                window.location = '/'
             } else {
-            const errorData = await response.json()
-            console.error('Failed to create gift:', errorData)
+                const errorData = await response.json()
+                console.error('Failed to create gift:', errorData)
             }
         } catch (error) {
             console.error('Fetch error:', error)
